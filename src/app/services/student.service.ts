@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class StudentService {
-  private apiUrl = 'http://localhost:3000/super/user/etudiants/details';
+  private apiUrl = 'https://revisemate-580ab153bf6d.herokuapp.com/api/super/user/etudiants/details';
 
   constructor(private http: HttpClient) {}
 

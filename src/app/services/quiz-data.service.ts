@@ -10,7 +10,7 @@ export class QuizDataService {
   constructor(private http: HttpClient) {}
 
   getQuizQuestions(quizId: string): Observable<any> {
-    return this.http.get(`http://localhost:3000/question/quiz/${quizId}`, { withCredentials: true });
+    return this.http.get(`https://revisemate-580ab153bf6d.herokuapp.com/api/question/quiz/${quizId}`, { withCredentials: true });
   }
 
 }

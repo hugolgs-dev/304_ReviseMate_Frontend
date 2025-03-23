@@ -7,14 +7,13 @@ import { User } from 'app/models/User';
     providedIn: 'root'
   })
   export class UserUpdateService {
-  
-    private baseUrl = 'http://localhost:3000/super/user';
-  
+
+    private baseUrl = 'https://revisemate-580ab153bf6d.herokuapp.com/api/super/user';
+
     constructor(private http: HttpClient) { }
-  
+
     // Méthode pour mettre à jour un utilisateur
     updateUser(id: string, user: User) {
       return this.http.put(`${this.baseUrl}/${id}`, user);
     }
   }
-  

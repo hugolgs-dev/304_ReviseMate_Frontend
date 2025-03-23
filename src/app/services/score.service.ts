@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ScoreService {
-  private apiUrl = 'http://localhost:3000/quiz'; // Assurez-vous que l'URL correspond à votre backend
+  private apiUrl = 'https://revisemate-580ab153bf6d.herokuapp.com/api/quiz'; // Assurez-vous que l'URL correspond à votre backend
 
   constructor(private http: HttpClient) {}
   saveScore(quizId: string, userId: string, correctAnswers: number, totalQuestions: number): Observable<any> {

@@ -11,7 +11,7 @@ export class AuthService {
 
   constructor() { }
   protected http = inject(HttpClient);
-  protected url: string = environment.url;
+  protected url: string = environment.apiUrl;
 
   signUp(user: User): Observable<any> {
     return this.http.post<any>(`${this.url}/auth/register`, user, { withCredentials: true });
