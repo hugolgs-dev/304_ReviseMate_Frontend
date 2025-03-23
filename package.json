@@ -9,10 +9,10 @@
         "ng": "ng",
         "start": "ng serve",
         "start:prod": "http-server dist/<your-app-name> -p $PORT",
-        "build": "ng build --prod",
+        "build": "ng build --configuration production",  // Updated this line
         "watch": "ng build --watch --configuration development",
         "test": "ng test"
-    },
+    }
     "dependencies": {
         "@angular/animations": "17.0.3",
         "@angular/cdk": "17.0.1",
