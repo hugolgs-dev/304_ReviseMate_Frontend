@@ -1,4 +1,4 @@
-const URL_DEV = `http://localhost:3000`;
+const URL_DEV = `https://revisemate-580ab153bf6d.herokuapp.com/`;
 
 export const environment = {
     production: false,
