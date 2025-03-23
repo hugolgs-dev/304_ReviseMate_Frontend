@@ -11,7 +11,7 @@ export class AuthService {
 
   constructor() { }
   protected http = inject(HttpClient);
-  protected url: string = 'https://revisemate-580ab153bf6d.herokuapp.com/api';
+  protected url: string = 'https://revisemate-580ab153bf6d.herokuapp.com';
 
   signUp(user: User): Observable<any> {
     return this.http.post<any>(`${this.url}/auth/register`, user, { withCredentials: true });

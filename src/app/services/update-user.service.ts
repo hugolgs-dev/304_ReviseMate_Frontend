@@ -8,7 +8,7 @@ import { User } from 'app/models/User';
   })
   export class UserUpdateService {
 
-    private baseUrl = 'https://revisemate-580ab153bf6d.herokuapp.com/api/super/user';
+    private baseUrl = 'https://revisemate-580ab153bf6d.herokuapp.com/super/user';
 
     constructor(private http: HttpClient) { }
 
