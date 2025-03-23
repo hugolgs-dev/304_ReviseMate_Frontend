@@ -9,7 +9,7 @@
         "ng": "ng",
         "start": "ng serve",
         "start:prod": "http-server dist/<your-app-name> -p $PORT",
-        "build": "ng build --configuration production",  // Updated this line
+        "build": "ng build --configuration production",
         "watch": "ng build --watch --configuration development",
         "test": "ng test"
     }
