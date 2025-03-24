@@ -7,7 +7,8 @@
     "private": true,
     "scripts": {
         "ng": "ng",
-        "start": "ng serve",
+        "start": "node server.js",
+        "heroku-postbuild": "ng build --configuration production"
         "start:prod": "http-server dist/fuse -p $PORT",
         "build": "ng build --configuration production",
         "watch": "ng build --watch --configuration development",
