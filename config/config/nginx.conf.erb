@@ -1,0 +1,30 @@
+server {
+    listen <%= ENV["PORT"] %>;
+    server_name localhost;
+    root /app/dist/fuse;
+    index index.html;
+    
+    location / {
+        try_files $uri $uri/ /index.html;
+        add_header Cache-Control "no-store, no-cache, must-revalidate";
+    }
+    
+    # Static assets caching
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2)$ {
+        expires 1y;
+        add_header Cache-Control "public";
+    }
+    
+    # Don't cache index.html
+    location = /index.html {
+        expires -1;
+        add_header Cache-Control "no-store, no-cache, must-revalidate";
+    }
+    
+    # Handle CORS for API requests (adjust to your backend URL)
+    location /api/ {
+        proxy_pass https://revisemate-580ab153bf6d.herokuapp.com/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
