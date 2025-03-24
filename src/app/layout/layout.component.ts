@@ -200,15 +200,12 @@ export class LayoutComponent implements OnInit, OnDestroy
         // Remove class names for all schemes
         this._document.body.classList.remove('light', 'dark');
 
-        // Add class name for the currently selected scheme
-        this._document.body.classList.add(this.scheme);
+        // Add class name for the currently selected scheme only if it's not 'light'
+        if (this.scheme && this.scheme !== 'light') {
+            this._document.body.classList.add(this.scheme);
+        }
     }
 
-    /**
-     * Update the selected theme
-     *
-     * @private
-     */
     private _updateTheme(): void
     {
         // Find the class name for the previously selected theme and remove it
@@ -221,6 +218,8 @@ export class LayoutComponent implements OnInit, OnDestroy
         });
 
         // Add class name for the currently selected theme
-        this._document.body.classList.add(this.theme);
+        if (this.theme) {
+            this._document.body.classList.add(this.theme);
+        }
     }
 }
