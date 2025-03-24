@@ -36,10 +36,8 @@ export class CreateCarteComponent implements OnInit {
 
         if (navigationState) {
             this.iaResponse = navigationState;
-            console.log('Données reçues de la redirection :', this.iaResponse);
             this.initializeForm();
         } else {
-            console.log('Aucune donnée reçue via redirection.');
             this.initializeForm(); // Si aucune donnée reçue, on initialise quand même le formulaire
         }
 
@@ -55,14 +53,12 @@ export class CreateCarteComponent implements OnInit {
 
         // Vérification si iaResponse contient des données valides
         if (this.iaResponse && this.iaResponse.data && this.iaResponse.data.length > 0) {
-            console.log('Données reçues et ajoutées au formulaire :', this.iaResponse.data);
 
             this.iaResponse.data.forEach(item => {
                 this.addQuestionReponse(item.question, item.réponse
                 );
             });
         } else {
-            console.log('Aucune donnée reçue, ajout d\'une question par défaut.');
             this.addQuestionReponse('', '');
         }
     }
@@ -93,7 +89,6 @@ export class CreateCarteComponent implements OnInit {
 
             // Vérifier si le formulaire est valide
             if (this.carteMemoireForm.valid) {
-                console.log('Formulaire soumis avec succès:', this.carteMemoireForm.value);
 
                 // Envoyer les données au backend via UowService
                 this.uow.cartes.post(this.carteMemoireForm.value).subscribe((res: any) => {
@@ -107,13 +102,12 @@ export class CreateCarteComponent implements OnInit {
                     }
                 });
             } else {
-                console.log('Le formulaire est invalide.');
                 this.ifError = true
                 this.PoppupContent = 'Veuillez renseigner le titre de votre carte mémoire.';
                 this.InfoPoppup();
             }
         } else {
-            console.log('Aucun utilisateur trouvé dans le localStorage.');
+           // console.log('Aucun utilisateur trouvé dans le localStorage.');
         }
     }
     InfoPoppup(): void {

@@ -33,11 +33,10 @@ export class QuizComponent implements OnInit {
           this.loadScores();
         }
       } else {
-        console.log("No data fetched");
       }
     },
     (error: any) => {
-      console.error("Error fetching data", error);
+      //console.error("Error fetching data", error);
     });
   }
 
@@ -58,7 +57,6 @@ export class QuizComponent implements OnInit {
   //Supprimer le quiz
     deleteQuiz(id: string) {
     this.uow.quiz.delete(id).subscribe((res) => {
-      console.log(res);
       this.ngOnInit();
     });
   }

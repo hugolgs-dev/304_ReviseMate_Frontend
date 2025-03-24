@@ -32,19 +32,15 @@ export class CartesComponent {
                 } else {
                     // .filter((carte: CarteMemoire) => carte.id_utilisateur == user?.id)
                     this.cartes = res.data.filter((carte: CarteMemoire) => carte.id_utilisateur == user?.id)
-                    console.log(this.cartes)
                 }
             }
             else {
-                console.log(
-                    "No data fetched"
-                )
+                //console.log("No data fetched")
             }
         });
     }
     deleteCarte(id: number) {
         this.uow.cartes.delete(id).subscribe((res) => {
-            console.log(res)
             this.ngOnInit();
         });
     }

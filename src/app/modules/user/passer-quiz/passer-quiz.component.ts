@@ -39,13 +39,10 @@ export class PasserQuizComponent implements OnInit {
     let user = JSON.parse(localStorage.getItem("user"));
     this.userId = user.id;
     this.id = this.route.snapshot.paramMap.get('id') || '';
-    console.log('ID du quiz : ', this.id);
 
     // Récupérer les questions du quiz
     this.quizDataService.getQuizQuestions(this.id).subscribe((response: any) => {
-      console.log('Données du quiz reçues :', response);
       if (response && response.questions && response.questions.length > 0) {
-        console.log('Questions reçues :', response.questions);
         this.questions = response.questions.map((question: any) => {
           const options = [...question.incorrect_answers, question.correct_answer];
           return { ...question, options: this.shuffleArray(options) };
@@ -53,7 +50,7 @@ export class PasserQuizComponent implements OnInit {
         // Récupérer le titre du quiz
         this.quizTitle = response.quizTitle;
       } else {
-        console.error('Aucune question trouvée pour ce quiz');
+        //console.error('Aucune question trouvée pour ce quiz');
       }
     });
   }
@@ -91,10 +88,10 @@ export class PasserQuizComponent implements OnInit {
   saveQuizScore() {
     this.scoreService.saveScore(this.id, this.userId, this.score, this.questions.length).subscribe(
       (response) => {
-        console.log('Score sauvegardé avec succès :', response);
+        //console.log('Score sauvegardé avec succès :', response);
       },
       (error) => {
-        console.error('Erreur lors de la sauvegarde du score :', error);
+        //console.error('Erreur lors de la sauvegarde du score :', error);
       }
     );
   }

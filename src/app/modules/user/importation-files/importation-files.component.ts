@@ -33,9 +33,8 @@ export class ImportationFilesComponent {
             promt: [''],
             type: ['fiche', [Validators.required]], // Ajouter la validation pour le type
         });
-        console.log('Form initialized:', this.form);
     }
-    
+
 
     onFileChange(event: Event): void {
         const input = event.target as HTMLInputElement;
@@ -43,25 +42,20 @@ export class ImportationFilesComponent {
             const file = input.files[0];
             this.form.patchValue({ file });
             this.form.get('text')?.setValue('');
-            console.log('File selected:', file);
         }
     }
 
     submit() {
-        console.log('Form submitted');
         if (this.form.invalid) {
-            console.log('Form is invalid');
             return;
         }
 
         this.form.disable();
         const formType = this.form.get('type')?.value;
-        console.log('Form type:', formType);
 
         // Suppression du prompt si le type est 'carte' ou 'quiz'
         if (formType === 'carte' || formType === 'quiz') {
             this.form.get('promt')?.setValue('');
-            console.log('Prompt cleared for type:', formType);
         }
 
         // Appel de la popup de chargement avant de commencer la requête (que ce soit pour le fichier ou le texte)
@@ -71,13 +65,11 @@ export class ImportationFilesComponent {
         if (this.form.get('file')?.value) {
             const formData = new FormData();
             formData.append('file', this.form.get('file')?.value);
-            console.log('File uploaded:', this.form.get('file')?.value);
 
             // Ajouter le prompt (uniquement pour 'fiche')
             const customPrompt = formType === 'fiche' ? this.form.get('promt')?.value : undefined;
             if (customPrompt) {
                 formData.append('customPrompt', customPrompt);
-                console.log('Custom prompt added:', customPrompt);
             }
 
             //Génération avec pdf
@@ -112,10 +104,8 @@ export class ImportationFilesComponent {
                 text: this.form.get('text')?.value,
                 ...(formType === 'fiche' && this.form.get('promt')?.value && { customPrompt: this.form.get('promt')?.value })
             };
-            console.log('Text data:', textData);
 
             this.iaGenerationService.getIAanswerFromText(textData, formType).subscribe(r => {
-                console.log('Text response:', r);
                 this.dialog.closeAll();
 
                 // Ajout de la redirection pour 'fiche', 'carte', ou 'quiz'
@@ -131,7 +121,6 @@ export class ImportationFilesComponent {
 
         // On réactive le formulaire une fois la soumission effectuée
         this.form.enable();
-        console.log('Form re-enabled');
     }
 
     InfoPoppup(): void {
@@ -140,9 +129,8 @@ export class ImportationFilesComponent {
             width: '500px'
         });
         dialogRef.afterClosed().subscribe((result) => {
-            console.log('Popup closed', result);
         });
     }
 
-    
+
 }

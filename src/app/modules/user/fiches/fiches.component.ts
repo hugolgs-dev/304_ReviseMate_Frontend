@@ -42,7 +42,7 @@ export class FichesComponent {
 
                 }
             } else {
-                console.log("No data fetched");
+                //console.log("No data fetched");
             }
         });
     }
@@ -61,7 +61,6 @@ export class FichesComponent {
 
     deleteFiche(id: number) {
         this.uow.fiches.delete(id).subscribe((res) => {
-            console.log(res);
             this.ngOnInit();
         });
     }

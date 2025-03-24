@@ -66,13 +66,12 @@ export class CreateUserComponent {
     }
 
     submit(user: User) {
-         console.log(user)
         this.uow.users.post(user).subscribe((res:any) => {
               if(res.message==="Inscription réussie"){
                   this.router.navigate(['/admin/users']);
 
               }else{
-                console.log("error while creating user")
+                //console.log("error while creating user")
               }
         })
     }

@@ -44,21 +44,19 @@ export class ReviserCarteMemoireComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id') || '';
-    console.log('ID de la carte : ', this.id);
-  
+
     this.uow.cartes.getOne(this.id).subscribe((response: any) => {
-      console.log('Données de la carte reçues :', response);
       if (response.success && response.data) {
         this.carte = response.data;
         this.totalCards = this.carte.questions_reponses.length;
         this.carteTitre = this.carte.titre;  // Assigner le titre à la propriété carteTitre
       } else {
-        console.error('Aucune question réponse trouvée pour cette carte');
+        //console.error('Aucune question réponse trouvée pour cette carte');
       }
     });
   }
 
-  
+
   getTitre(): string {
     return this.carte.titre || 'Titre non disponible';
   }
@@ -76,7 +74,7 @@ export class ReviserCarteMemoireComponent implements OnInit {
       this.isShowingAnswer = false;  // Réinitialise l'affichage de la question
     }
   }
-  
+
 
   // Méthode pour passer à la carte précédente
   prevCard() {

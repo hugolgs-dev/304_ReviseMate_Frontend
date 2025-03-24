@@ -34,7 +34,6 @@ export class EditFicheComponent {
 
     ngOnInit(): void {
         this.id = this.route.snapshot.paramMap.get('id') || '';
-        console.log('ID de la fiche : ', this.id);
         this.uow.fiches.getOne(this.id).subscribe((e: any) => {
             this.fiche = e.data
             this.content = e.data.contenu
@@ -44,7 +43,6 @@ export class EditFicheComponent {
 
     // Méthode pour enregistrer la fiche
     saveFiche() {
-    console.log('Fiche sauvegardée avec le contenu : ', this.content);
         this.fiche.contenu = this.content
         this.fiche.titre = this.ficheName
         this.uow.fiches.put(this.id, this.fiche).subscribe((res: any) => {
@@ -53,7 +51,6 @@ export class EditFicheComponent {
                this._router.navigateByUrl('/user/fiches');
 
             }else{
-                console.log('Erreur lors de l\'enregistrement de la fiche');
                 this.PoppupContent='Erreur lors de l\'enregistrement de la fiche';
                this.InfoPoppup();
 

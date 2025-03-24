@@ -85,7 +85,7 @@ export class UsersComponent {
                 this.recentTransactionsDataSource.paginator = this.paginator;
 
             }else{
-               console.log("erreur lors de recuperation des donnees ")
+               //console.log("erreur lors de recuperation des donnees ")
             }
         });
 

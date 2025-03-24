@@ -187,8 +187,6 @@ export class AuthSignUpComponent implements OnInit {
         this.signUpForm.disable();
         this.showAlert = false;
 
-        console.log(this.signUpForm.value);
-
         this.signUpForm.patchValue({
             code_prof: this.codeProf,
         });

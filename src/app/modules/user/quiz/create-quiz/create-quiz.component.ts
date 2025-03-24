@@ -88,7 +88,6 @@ export class CreateQuizComponent {
 
         question.correct_answer = selectedAnswer.text;
 
-        console.log(`Réponse correcte pour la question "${question.question}": "${selectedAnswer.text}"`);
     }
 
     submitQuiz() {
@@ -126,14 +125,12 @@ export class CreateQuizComponent {
                 this.questions.forEach(question => {
                     this.uow.question.post(question).subscribe({
                         next: (response) => {
-                            console.log('Question créée:', response);
                             requestsCompleted++;
                             if (requestsCompleted === this.questions.length) {
                                 this._router.navigateByUrl('/user/quiz');
                             }
                         },
                         error: (err) => {
-                            console.error('Erreur lors de la création de la question:', err);
                             this.PoppupContent = "Erreur lors de l'enregistrement du quiz";
                             this.InfoPoppup();
                         }

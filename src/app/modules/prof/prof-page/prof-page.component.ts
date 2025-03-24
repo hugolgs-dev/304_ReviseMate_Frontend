@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StudentService } from '../../../services/student.service'; 
-import { Student } from '../../../models/Student'; 
+import { StudentService } from '../../../services/student.service';
+import { Student } from '../../../models/Student';
 
 @Component({
   selector: 'app-prof-page',
@@ -13,22 +13,21 @@ import { Student } from '../../../models/Student';
 })
 export class ProfPageComponent {
   students: Student[] = [];
- 
+
    constructor(private studentService: StudentService) {}
- 
+
    // Récupère les étudiants
    ngOnInit(): void {
      this.studentService.getStudents().subscribe(
        (data) => {
-         console.log('Étudiants récupérés:', data); // Vérifie ce qui est récupéré
          this.students = data;
        },
        (error) => {
-         console.error('Erreur de récupération des étudiants:', error);
+         //console.error('Erreur de récupération des étudiants:', error);
        }
      );
    }
-  
+
 
   isModalOpen = false; // Variable pour contrôler l'ouverture de la modal
   selectedStudent = null; // Étudiant sélectionné à afficher dans la modal

@@ -36,11 +36,10 @@ export class EditCarteComponent {
 
             if (res.success || res.length > 0 ) {
                 this.carte = res.data;
-                console.log(this.carte)
                 this.createForm();
 
             } else {
-                console.log('Erreur lors de recuperation de carte memoire');
+                //console.log('Erreur lors de recuperation de carte memoire');
                 //     this.PoppupContent='Erreur lors de l\'enregistrement de la fiche';
                 //    this.InfoPoppup();
             }
@@ -50,7 +49,6 @@ export class EditCarteComponent {
     }
     createForm() {
         if (!this.carte || !this.carte.questions_reponses) {
-            console.log("Les données ne sont pas encore chargées !");
             return;
         }
 
@@ -59,8 +57,6 @@ export class EditCarteComponent {
             id_utilisateur: [this.carte.id_utilisateur],
             questions_reponses: this.fb.array(this.createQuestionsReponsesArray())
         });
-
-        console.log("Formulaire initialisé avec :", this.carteMemoireForm.value);
     }
 
     // Fonction pour transformer les questions/réponses en FormGroup
@@ -89,10 +85,7 @@ export class EditCarteComponent {
 
     // Fonction pour soumettre le formulaire
     onSubmit() {
-
-        console.log(this.carteMemoireForm.value)
         this.uow.cartes.put(this.id, this.carteMemoireForm.value).subscribe((res: any) => {
-            console.log(res)
             if (res.success) {
                 this.ifError = false;
                 this.dialog.closeAll();

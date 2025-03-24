@@ -40,7 +40,6 @@ export class EditQuizComponent {
             if (res.data) {
                 this.quizTitle = res.data.titre
                 this.uow.question.getQuizQuestions(this.id).subscribe((questionRes: any) => {
-                    console.log(questionRes)
                     questionRes.questions.forEach(element => {
                         this.questions.push
                             ({
@@ -58,9 +57,6 @@ export class EditQuizComponent {
                             });
 
                     });
-
-                    console.log("=========")
-                    console.log(questionRes.questions)
                 });
             }
         });
@@ -93,7 +89,6 @@ export class EditQuizComponent {
 
         question.correct_answer = selectedAnswer.text;
 
-        console.log(`Réponse correcte pour la question "${question.question}": "${selectedAnswer.text}"`);
     }
 
     InfoPoppup(): void {
@@ -126,21 +121,16 @@ export class EditQuizComponent {
 
         this.uow.quiz.put(this.id, updatedQuiz).subscribe(
             (res: any) => {
-                console.log("Quiz updated successfully:", res);
                 let requestsCompleted = 0;
-                console.log("================")
-                console.log(questions)
                 questions.forEach(question => {
                     this.uow.question.put(question._id,question).subscribe({
                         next: (response) => {
-                            console.log('Question créée:', response);
                             requestsCompleted++;
                             if (requestsCompleted === this.questions.length) {
                                this._router.navigateByUrl('/user/quiz'); // Navigate only after all requests complete
                             }
                         },
                         error: (err) => {
-                            console.error('Erreur lors de la création de la question:', err);
                             this.PoppupContent = "Erreur lors de l'enregistrement du quiz";
                             this.InfoPoppup();
                         }
@@ -150,7 +140,6 @@ export class EditQuizComponent {
                    this._router.navigate(['/quizzes']); // Rediriger après mise à jour
                 },
                     (err: any) => {
-                        console.error("Error updating quiz:", err);
                         alert("Erreur lors de la mise à jour du quiz.");
                     }
                 );

@@ -71,7 +71,6 @@ export class CreateFicheComponent {
 
 
     saveFiche() {
-        console.log(this.ficheName)
         if (this.ficheName === '' || this.ficheName === undefined) {
             this.ifError = true;
             this.PoppupContent = 'Veuillez renseigner le titre ';

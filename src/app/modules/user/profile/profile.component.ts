@@ -51,7 +51,6 @@ export class ProfileComponent {
         }
 
         this.uow.users.getOne(this.id).subscribe((res: any) => {
-            console.log(res);
             if (res.success) {
                 this.user = res.data;
                 this.commingPwd = res.data.password;
@@ -64,7 +63,7 @@ export class ProfileComponent {
                 if (res !== null) {
                     this.classes = res.data;
                 } else {
-                    console.log("A problem occurred while fetching data");
+                    //console.log("A problem occurred while fetching data");
                 }
             });
         });
@@ -81,7 +80,7 @@ export class ProfileComponent {
             id_classe: [this.user.id_classe],
         });
     }
-    
+
 
     update(user) {
         // Vérifiez si le mot de passe a été modifié
@@ -92,10 +91,9 @@ export class ProfileComponent {
             // Mettez à jour le mot de passe
             user.password = this.commingPwd;
         }
-    
+
         // Utilisation du service UserUpdateService pour mettre à jour l'utilisateur
         this.userUpdateService.updateUser(this.id, user).subscribe((res: { success: boolean, data: any }) => {
-            console.log('Server response:', res);
             if (res.success) {
                 this.poppupMessage = 'Profil mis à jour';
                 this.ProfilePoppup();
@@ -107,8 +105,8 @@ export class ProfileComponent {
             }
         });
     }
-    
-    
+
+
 
     closePoppup() {
         this.dialog.closeAll();
