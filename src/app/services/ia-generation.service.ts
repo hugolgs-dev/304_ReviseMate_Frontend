@@ -7,7 +7,7 @@ import { environment } from 'environments/environment';
 })
 export class IaGenerationService {
   protected http = inject(HttpClient);
-  protected url: string = environment.url;
+  protected url: string = 'https://revisemate-580ab153bf6d.herokuapp.com';
 
   constructor() {}
 
